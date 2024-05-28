@@ -1,6 +1,8 @@
 const express=require('express')
 const app=express()
 const dotenv=require('dotenv').config()
+const http=require('http')
+const socketHandler=require('./config/socket')
 const db=require('./config/mongoose')
 
 
@@ -10,6 +12,9 @@ app.use(express.urlencoded())
 
 app.use('/api',require('./routes'))
 
+const server = http.createServer(app);
+
+const io = socketHandler(server);
 
 const port=process.env.port
 
