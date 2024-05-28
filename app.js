@@ -5,6 +5,10 @@ const db=require('./config/mongoose')
 
 
 
+app.use(express.json())
+app.use(express.urlencoded())
+
+app.use('/api',require('./routes'))
 
 
 const port=process.env.port
